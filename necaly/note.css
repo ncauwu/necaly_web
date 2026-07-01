@@ -1,0 +1,128 @@
+@import url("https://fonts.googleapis.com/css?family=Libre+Caslon+Text:400,700");
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { height: 100%; margin: 0; overflow: hidden; }
+body {
+    font-family: "Libre Caslon Text", serif;
+    position: relative;
+    background-color: #FFFBF8;
+    background-image: radial-gradient(circle, rgba(231, 193, 155, 0.30) 1.8px, transparent 2.2px);
+    background-size: 28px 28px;
+}
+
+/* header (sama kayak dashboard) */
+.topbar   { position: absolute; top: 0;    left: 0; width: 100%; height: 46px; background: #E3EFF6; }
+.headband { position: absolute; top: 46px; left: 0; width: 100%; height: 44px; background: #fff; box-shadow: 0 3px 4px rgba(0,0,0,0.08); }
+.logout-dot { position: absolute; left: 22px; top: 12px; width: 22px; height: 22px; background: #FF0000; border-radius: 50%; cursor: pointer; z-index: 6; }
+.profile { position: absolute; left: 45px; top: 4px; width: 118px; height: 118px; background: #FFF8ED; border: 5px solid #E7C19B; border-radius: 9999px; z-index: 2; }
+.cat { position: absolute; left: 63px; top: 26px; width: 82px; height: 72px; z-index: 3; }
+.page-title { position: absolute; left: 188px; top: 40px; color: #7A6972; font-size: 36px; z-index: 3; }
+
+/* container folder */
+.folder {
+    position: absolute;
+    top: 118px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(1120px, 90%);
+    bottom: 42px;
+    display: flex; flex-direction: column;
+}
+.tab {
+    flex: none; height: 72px;
+    background: #FBDEE3;
+    display: flex; align-items: center; padding: 0 30px;
+    clip-path: polygon(0 0, 250px 0, 280px 50%, 100% 50%, 100% 100%, 0 100%);
+}
+.tab-title { color: #7A6972; font-size: 34px; }
+.exit-btn { margin-left: 22px; color: #D32326; font-size: 46px; font-weight: 700; transform: rotate(45deg); cursor: pointer; line-height: 1; }
+
+.board {
+    flex: 1; min-height: 0;
+    background: rgba(227, 239, 246, 0.90);
+    border-radius: 0 0 20px 20px;
+    padding: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1.35fr 1.05fr;
+    grid-template-rows: 1fr 1.25fr;
+    gap: 24px;
+}
+
+/* kartu */
+.card {
+    position: relative;
+    border-radius: 20px;
+    box-shadow: 4px 5px 4px rgba(0,0,0,0.25);
+    padding: 16px 20px;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+}
+.card-mood     { grid-column: 1; grid-row: 1; background: rgba(255,248,237,0.80); }
+.card-todo     { grid-column: 1; grid-row: 2; background: rgba(255,248,237,0.80); }
+.card-schedule { grid-column: 2; grid-row: 1 / span 2; background: rgba(255,248,237,0.80); }
+.card-notes    { grid-column: 3; grid-row: 2; background: rgba(249,235,255,0.85); }
+
+.card-title {
+    flex: none;
+    color: #7A6972; font-size: 26px;
+    border-bottom: 1px solid #7A6972;
+    padding-bottom: 6px; margin-bottom: 12px;
+}
+
+/* area tulis */
+.edit { flex: 1; min-height: 0; overflow-y: auto; color: #7A6972; font-size: 18px; line-height: 1.6; outline: none; }
+textarea.edit { resize: none; background: transparent; border: none; font-family: inherit; width: 100%; }
+.schedule-list { padding-left: 26px; list-style-position: outside; }
+.schedule-list li { margin-bottom: 6px; }
+.schedule-list li::marker { content: "★  "; color: #E8BCE3; font-size: 15px; }
+
+/* to-do */
+.todo-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+.todo-row input { width: 20px; height: 20px; margin-top: 2px; accent-color: #E7C19B; flex: none; cursor: pointer; }
+.todo-text { flex: 1; outline: none; min-height: 24px; }
+.todo-text.done { text-decoration: line-through; opacity: 0.55; }
+
+/* mood */
+.mood-days {
+    flex: 1;
+    align-self: center;
+    width: 200px; max-width: 100%;
+    display: flex; flex-wrap: wrap;
+    gap: 8px;
+    align-content: center; justify-content: center;
+}
+.mood-day {
+    flex: none;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: #E3EFF6; border: none; cursor: pointer;
+    color: #7A6972; font-family: "Libre Caslon Text", serif; font-size: 16px;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.12s;
+}
+.mood-day:nth-child(even) { background: #FBDEE3; }
+.mood-day:hover { transform: scale(1.12); }
+.mood-day.has-face { font-size: 24px; }
+
+/* bintang week */
+.stars-area { grid-column: 3; grid-row: 1; position: relative; overflow: visible; }
+.stars-cluster { position: absolute; top: 50%; left: 50%; width: 364px; height: 275px; transform: translate(-50%, -50%) scale(0.68); transform-origin: center; }
+.week-btn { position: absolute; background: none; border: none; padding: 0; cursor: pointer; }
+.week-btn svg { display: block; }
+.week-btn .wlabel { position: absolute; color: #7A6972; font-size: 34px; font-weight: 700; font-family: "Libre Caslon Text", serif; transform-origin: top left; }
+.week-btn.active { filter: drop-shadow(0 0 7px rgba(122,105,114,0.65)); }
+.w1 { left: 0;     top: 32px; }
+.w2 { left: 175px; top: 20px; }
+.w3 { left: 95px;  top: 137px; }
+.w4 { left: 290px; top: 100px; }
+
+/* popup keluar */
+.modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.3); align-items: center; justify-content: center; z-index: 100; }
+.modal-box { background: #FFFBF8; padding: 30px 35px; border-radius: 20px; width: 340px; display: flex; flex-direction: column; align-items: center; color: #7A6972; }
+.modal-box h3 { font-size: 26px; margin-bottom: 14px; }
+.modal-text { font-size: 16px; line-height: 1.5; text-align: center; margin-bottom: 22px; }
+.modal-actions { display: flex; gap: 12px; justify-content: center; margin-bottom: 10px; }
+.btn-link, .btn-fill { padding: 8px 22px; border: none; border-radius: 999px; font-family: inherit; font-size: 15px; cursor: pointer; color: #7A6972; text-decoration: none; display: inline-flex; align-items: center; }
+.btn-link { background: #FBDEE3; }
+.btn-fill { background: #E3EFF6; }
+.btn-batal { background: none; border: none; color: #7A6972; font-family: inherit; font-size: 14px; cursor: pointer; opacity: 0.7; }

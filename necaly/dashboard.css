@@ -1,0 +1,114 @@
+@import url("https://fonts.googleapis.com/css?family=Libre+Caslon+Text:400,700");
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { overflow-x: hidden; }
+body {
+    font-family: "Libre Caslon Text", serif;
+    min-height: 100vh;
+    padding: 195px 45px 130px;
+    background-color: #FFFBF8;
+    background-image: radial-gradient(circle, rgba(231, 193, 155, 0.30) 1.8px, transparent 2.2px);
+    background-size: 28px 28px;
+}
+
+.topbar   { position: absolute; top: 0;    left: 0; width: 100%; height: 95px; background: #E3EFF6; }
+.headband { position: absolute; top: 95px; left: 0; width: 100%; height: 52px; background: #ffffff; box-shadow: 0 3px 4px rgba(0, 0, 0, 0.08); }
+
+.logout-dot {
+    position: absolute; left: 22px; top: 16px;
+    width: 24px; height: 24px; background: #FF0000;
+    border-radius: 50%; cursor: pointer; z-index: 6;
+}
+
+.profile {
+    position: absolute; left: 45px; top: 55px;
+    width: 120px; height: 120px;
+    background: #FFF8ED; border: 5px solid #E7C19B;
+    border-radius: 9999px; z-index: 2;
+}
+.cat { position: absolute; left: 64px; top: 79px; width: 82px; height: 72px; z-index: 3; }
+
+.page-title {
+    position: absolute; left: 190px; top: 92px;
+    color: #7A6972; font-size: 36px; font-weight: 400; z-index: 3;
+}
+
+.bubble-area {
+    display: flex; flex-wrap: wrap; gap: 34px 40px;
+}
+.bubble-wrap { position: relative; }
+.bubble {
+    position: relative;
+    width: 150px; height: 56px;
+    border-radius: 30px;
+    display: flex; align-items: center; padding-left: 18px;
+    color: #7A6972; font-size: 22px; text-decoration: none;
+}
+.bubble-blue { background: rgba(227, 239, 246, 0.90); }
+.bubble-pink { background: #FBDEE3; }
+.bubble-tail { position: absolute; left: 112px; top: 42px; width: 30px; height: 30px; }
+
+/* tombol hapus (✕) -> cuma muncul pas mode hapus */
+.bubble-del {
+    display: none;
+    position: absolute; top: -8px; right: -8px;
+    width: 26px; height: 26px; border-radius: 50%;
+    background: #FF0000; color: #fff; text-decoration: none;
+    align-items: center; justify-content: center;
+    font-size: 18px; line-height: 1; z-index: 5;
+}
+body.delete-mode .bubble-del { display: flex; }
+body.delete-mode .bubble { pointer-events: none; }
+
+/* ====== tombol menu (FAB) pojok kanan bawah ====== */
+.fab {
+    position: fixed; right: 32px; bottom: 28px; z-index: 50;
+    display: flex; flex-direction: column; align-items: center; gap: 16px;
+}
+.fab-actions {
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+    opacity: 0; pointer-events: none; transform: translateY(12px);
+    transition: opacity .2s ease, transform .2s ease;
+}
+.fab.open .fab-actions { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+.fab-main {
+    width: 80px; height: 80px; border-radius: 9999px; border: none; cursor: pointer;
+    background: #FFF8ED; box-shadow: 0px 4px 4px 2px #EFCFB2;
+    display: flex; align-items: center; justify-content: center;
+}
+.fab-btn {
+    width: 60px; height: 60px; border-radius: 9999px; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0px 3px 4px 1px #EFCFB2;
+    font-family: "Libre Caslon Text", serif; color: #7A6972;
+}
+.fab-add { background: #FFF8ED; font-size: 44px; font-weight: 700; line-height: 1; }
+.fab-del { background: #FBDEE3; }
+
+/* popup */
+.modal { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.3); align-items: center; justify-content: center; z-index: 100; }
+.modal-box { background: #FFFBF8; padding: 30px 35px; border-radius: 20px; width: 320px; display: flex; flex-direction: column; color: #7A6972; }
+.modal-box h3 { font-size: 24px; margin-bottom: 16px; text-align: center; }
+.modal-box label { font-size: 15px; margin-bottom: 5px; }
+.modal-box select, .modal-box input { height: 40px; border: 1px solid #E7C19B; border-radius: 10px; padding: 0 12px; margin-bottom: 16px; font-family: inherit; font-size: 15px; color: #7A6972; outline: none; }
+
+.modal-actions { display: flex; gap: 12px; justify-content: center; }
+.modal-actions button { padding: 8px 22px; border: none; border-radius: 999px; font-family: inherit; font-size: 15px; cursor: pointer; color: #7A6972; }
+
+.modal-actions button[type="submit"] { background: #E3EFF6; }
+.modal-actions button[type="button"] { background: #FBDEE3; }
+
+/* popup konfirmasi hapus */
+.modal-text {
+    font-size: 15px; line-height: 1.5;
+    text-align: center; margin-bottom: 22px;
+}
+.modal-actions a {
+    padding: 8px 22px; border-radius: 999px; border: none;
+    font-family: inherit; font-size: 15px; cursor: pointer;
+    text-decoration: none; color: #7A6972;
+    display: inline-flex; align-items: center;
+}
+.btn-hapus { background: #FBDEE3; }
